@@ -11,7 +11,7 @@ def github_webhook():
 
     data = None
 
-    # ---------- PUSH ----------
+    
     if event_type == "push":
         data = {
             "request_id": payload.get("after"),
@@ -22,11 +22,11 @@ def github_webhook():
             "timestamp": datetime.utcnow()
         }
 
-    # ---------- PULL REQUEST ----------
+
     elif event_type == "pull_request":
         pr = payload["pull_request"]
 
-        # MERGE
+        
         if pr.get("merged"):
             data = {
                 "request_id": pr["id"],
